@@ -1,0 +1,14 @@
+footer {
+  color: #fff;
+  width: 100%;
+  padding: 0 10px;
+  height: 35px;
+  clear: both;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  font-size: 13px;
+  /* font-size: 0.8125rem; */
+  font-weight: 500;
+}
