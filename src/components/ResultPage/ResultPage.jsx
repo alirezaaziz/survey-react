@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable no-console */
+import React, { useEffect } from 'react'
 import './ResultPage.css'
 
 const ResultPage = () => {
@@ -7,10 +8,12 @@ const ResultPage = () => {
   const question2 = JSON.parse(localStorage.getItem('radioButton'))
   const question3 = JSON.parse(localStorage.getItem('checkbox'))
 
-  console.log('user detail:', userDetail)
-  console.log('question1:', question1)
-  console.log('question2:', question2)
-  console.log('question3:', question3)
+  useEffect(() => {
+    console.log('user detail:', userDetail)
+    console.log('question1:', question1)
+    console.log('question2:', question2)
+    console.log('question3:', question3)
+  }, [])
 
   return (
     <div className="scale-up-center">
