@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import CustomButton from '../CustomButton/CustomButton'
 
-const RadioButton = () => {
+const ThirdQuestion = () => {
+  const history = useHistory()
   const checkbox1 = useRef(null)
   const checkbox2 = useRef(null)
   const checkbox3 = useRef(null)
   const checkbox4 = useRef(null)
-  const history = useHistory()
   function handleSubmit(event) {
     event.preventDefault()
     const data = {
@@ -17,11 +17,12 @@ const RadioButton = () => {
       checkbox3: event.target.inlineCheckbox3.checked,
       checkbox4: event.target.inlineCheckbox4.checked,
     }
-    localStorage.setItem('radioButton', JSON.stringify(data))
-    history.push('/three')
+    localStorage.setItem('checkbox', JSON.stringify(data))
+    localStorage.setItem('activeTimer', false)
+    history.push('/end')
   }
   useEffect(() => {
-    const db = JSON.parse(localStorage.getItem('radioButton'))
+    const db = JSON.parse(localStorage.getItem('checkbox'))
     if (db != null) {
       checkbox1.current.checked = db.checkbox1
       checkbox2.current.checked = db.checkbox2
@@ -29,17 +30,18 @@ const RadioButton = () => {
       checkbox4.current.checked = db.checkbox4
     }
   })
+  //  label, type, id, ref, group
   return (
-    <Form onSubmit={handleSubmit} className="slide-tr">
-      <p>Would you recommend our company? </p>
+    <Form onSubmit={handleSubmit} className="slide-top">
+      <p>How did you hear about us? </p>
       <div key="inline-checkbox" className="mb-3">
         <ul>
           <li>
             <Form.Check
               inline
-              label="No"
+              label="Google and Search Engines"
               name="group1"
-              type="radio"
+              type="checkbox"
               id="inlineCheckbox1"
               ref={checkbox1}
             />
@@ -47,9 +49,9 @@ const RadioButton = () => {
           <li>
             <Form.Check
               inline
-              label="Maybe"
+              label="Emails or Newsletter"
               name="group1"
-              type="radio"
+              type="checkbox"
               id="inlineCheckbox2"
               ref={checkbox2}
             />
@@ -57,8 +59,8 @@ const RadioButton = () => {
           <li>
             <Form.Check
               inline
-              label="Probably"
-              type="radio"
+              label="Friends or other people"
+              type="checkbox"
               name="group1"
               id="inlineCheckbox3"
               ref={checkbox3}
@@ -67,8 +69,8 @@ const RadioButton = () => {
           <li>
             <Form.Check
               inline
-              label="100% Sure"
-              type="radio"
+              label="other"
+              type="checkbox"
               name="group1"
               id="inlineCheckbox4"
               ref={checkbox4}
@@ -76,14 +78,16 @@ const RadioButton = () => {
           </li>
         </ul>
       </div>
-      <CustomButton buttonType="light" type="button" link="/first">
-        Prev
-      </CustomButton>
-      <CustomButton buttonType="warning" type="submit" link="/three">
-        Next
-      </CustomButton>
+      <div id="bottom-wizard">
+        <CustomButton buttonType="light" link="/three">
+          Prev
+        </CustomButton>
+        <CustomButton buttonType="success" type="submit">
+          Submit
+        </CustomButton>
+      </div>
     </Form>
   )
 }
 
-export default RadioButton
+export default ThirdQuestion

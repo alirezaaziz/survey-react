@@ -11,6 +11,7 @@ const UserDetail = () => {
   const radioFemale = useRef(null)
   const history = useHistory()
   function handleSubmit(event) {
+    localStorage.setItem('activeTimer', true)
     event.preventDefault()
     const data = {
       name: event.target.formGridName.value,

@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import CustomButton from '../CustomButton/CustomButton'
 
-const TextArea = () => {
+const FirstQuestion = () => {
   const history = useHistory()
   const inputText = useRef(null)
   function handleSubmit(event) {
@@ -37,4 +37,4 @@ const TextArea = () => {
   )
 }
 
-export default TextArea
+export default FirstQuestion

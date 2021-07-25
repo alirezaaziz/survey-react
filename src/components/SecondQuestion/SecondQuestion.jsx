@@ -1,14 +1,14 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import CustomButton from '../CustomButton/CustomButton'
 
-const CheckBox = ({ timer }) => {
-  const history = useHistory()
+const SecondQuestion = () => {
   const checkbox1 = useRef(null)
   const checkbox2 = useRef(null)
   const checkbox3 = useRef(null)
   const checkbox4 = useRef(null)
+  const history = useHistory()
   function handleSubmit(event) {
     event.preventDefault()
     const data = {
@@ -17,12 +17,11 @@ const CheckBox = ({ timer }) => {
       checkbox3: event.target.inlineCheckbox3.checked,
       checkbox4: event.target.inlineCheckbox4.checked,
     }
-    localStorage.setItem('checkbox', JSON.stringify(data))
-    timer(false)
-    history.push('/end')
+    localStorage.setItem('radioButton', JSON.stringify(data))
+    history.push('/three')
   }
   useEffect(() => {
-    const db = JSON.parse(localStorage.getItem('checkbox'))
+    const db = JSON.parse(localStorage.getItem('radioButton'))
     if (db != null) {
       checkbox1.current.checked = db.checkbox1
       checkbox2.current.checked = db.checkbox2
@@ -31,16 +30,16 @@ const CheckBox = ({ timer }) => {
     }
   })
   return (
-    <Form onSubmit={handleSubmit} className="slide-top">
-      <p>How did you hear about us? </p>
+    <Form onSubmit={handleSubmit} className="slide-tr">
+      <p>Would you recommend our company? </p>
       <div key="inline-checkbox" className="mb-3">
         <ul>
           <li>
             <Form.Check
               inline
-              label="Google and Search Engines"
+              label="No"
               name="group1"
-              type="checkbox"
+              type="radio"
               id="inlineCheckbox1"
               ref={checkbox1}
             />
@@ -48,9 +47,9 @@ const CheckBox = ({ timer }) => {
           <li>
             <Form.Check
               inline
-              label="Emails or Newsletter"
+              label="Maybe"
               name="group1"
-              type="checkbox"
+              type="radio"
               id="inlineCheckbox2"
               ref={checkbox2}
             />
@@ -58,8 +57,8 @@ const CheckBox = ({ timer }) => {
           <li>
             <Form.Check
               inline
-              label="Friends or other people"
-              type="checkbox"
+              label="Probably"
+              type="radio"
               name="group1"
               id="inlineCheckbox3"
               ref={checkbox3}
@@ -68,8 +67,8 @@ const CheckBox = ({ timer }) => {
           <li>
             <Form.Check
               inline
-              label="other"
-              type="checkbox"
+              label="100% Sure"
+              type="radio"
               name="group1"
               id="inlineCheckbox4"
               ref={checkbox4}
@@ -77,16 +76,14 @@ const CheckBox = ({ timer }) => {
           </li>
         </ul>
       </div>
-      <div id="bottom-wizard">
-        <CustomButton buttonType="light" link="/three">
-          Prev
-        </CustomButton>
-        <CustomButton buttonType="success" type="submit">
-          Submit
-        </CustomButton>
-      </div>
+      <CustomButton buttonType="light" type="button" link="/first">
+        Prev
+      </CustomButton>
+      <CustomButton buttonType="warning" type="submit" link="/three">
+        Next
+      </CustomButton>
     </Form>
   )
 }
 
-export default CheckBox
+export default SecondQuestion

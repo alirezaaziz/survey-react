@@ -2,10 +2,8 @@ import React from 'react'
 import './Header.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import { FaYoutube, FaTelegram, FaInstagramSquare } from 'react-icons/fa'
-// import aparat from './aparat.svg'
-import logo from './logo.svg'
-
-import aparatLogo from '../LogoImg/aparat.svg'
+import aparat from '../LogoImg/aparat.svg'
+import logo from '../LogoImg/logo.svg'
 
 const Header = () => (
   <header>
@@ -54,7 +52,7 @@ const Header = () => (
               </li>
               <li>
                 <a href="//#endregion">
-                  <img src={aparatLogo} alt="aparat logo" />
+                  <img src={aparat} alt="aparat logo" />
                 </a>
               </li>
             </ul>
